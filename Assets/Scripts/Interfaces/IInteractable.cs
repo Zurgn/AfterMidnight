@@ -2,6 +2,7 @@ using UnityEngine;
 
 public interface IInteractable
 {
-    void Interact();
+    string GetInteractionPrompt(); // Текст-подсказка
+    void Interact();               // Действие
 }
 
