@@ -14,8 +14,8 @@ public class PlayerMovement : MonoBehaviour
     public float maxStamina = 100f;       // Максимальная стамина
     public float staminaDrain = 20f;      // Расход в секунду при беге
     public float staminaRegen = 15f;      // Восстановление в секунду
-    private float currentStamina;          // Текущее значение
-    private bool isExhausted = false;      // Флаг полного истощения
+    private float currentStamina;         // Текущее значение
+    private bool isExhausted = false;     // Флаг полного истощения
 
     void Start()
     {
