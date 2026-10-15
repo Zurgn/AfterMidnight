@@ -5,15 +5,18 @@ using TMPro;
 public class PlayerInteraction : MonoBehaviour
 {
     public float interactionDistance = 3f;  // Дистанция взаимодействия
+    float rayRadius = 0.2f;
     public TextMeshProUGUI promptTextObject;
+
+    Color rayColor = Color.red; // Debug-Debug-Debug  Цвет луча при наведении на объект без функции взаимодействия
 
     void Update()
     {
         Ray ray = new Ray(transform.position, transform.forward);
         RaycastHit hit;
-        Color rayColor = Color.red; // Debug-Debug-Debug  Цвет луча при наведении на объект без функции взаимодействия
         bool foundInteractable = false;
-        float rayRadius = 0.2f;
+
+         rayColor = Color.red; // Debug-Debug-Debug
 
         if (Physics.SphereCast(ray.origin, rayRadius, ray.direction, out hit, interactionDistance))
         {
@@ -38,13 +41,20 @@ public class PlayerInteraction : MonoBehaviour
         }
 
         if (!foundInteractable)
+        {
+            if (promptTextObject != null)
             {
-                if (promptTextObject != null)
-                {
-                    promptTextObject.gameObject.SetActive(false); // Выключаем текст
-                }
+                promptTextObject.gameObject.SetActive(false);
             }
-
-        Debug.DrawRay(ray.origin, ray.direction * interactionDistance, rayColor); // Debug-Debug-Debug Отрисовка луча
+        }
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = rayColor;
+        Vector3 direction = transform.forward * interactionDistance;
+        Gizmos.DrawRay(transform.position, direction);
+        Gizmos.DrawWireSphere(transform.position + direction, rayRadius);
+    }
+
 }
