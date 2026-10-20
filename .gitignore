@@ -106,7 +106,7 @@ InitTestScene*.unity*
 /[Aa]ssets/[Ss]ceneDependencyCache*
 
 
-
+Temp/
 **/~$*
 **/.$*
 **/*~
