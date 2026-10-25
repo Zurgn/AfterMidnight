@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 3929091677985091295}
   - component: {fileID: 155822005395184830}
   - component: {fileID: 5675576932937413751}
+  - component: {fileID: -2175732190044266918}
+  - component: {fileID: -2778302879466013242}
   m_Layer: 0
   m_Name: Monster
   m_TagString: Untagged
@@ -30,8 +32,8 @@ Transform:
   m_GameObject: {fileID: 4139934158195177027}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.55723, y: 1, z: -23.07579}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1.9, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -155,3 +157,30 @@ MonoBehaviour:
   obstacleMask:
     serializedVersion: 2
     m_Bits: 1
+  chaseLoseTimeout: 3
+--- !u!114 &-2175732190044266918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4139934158195177027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc09f6c79f5c17340a68a0186eeedcad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+--- !u!114 &-2778302879466013242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4139934158195177027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa04c60020ecb5f41b27f3ca2311fce7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  waypoints: []
+  patrolSpeed: 3.5

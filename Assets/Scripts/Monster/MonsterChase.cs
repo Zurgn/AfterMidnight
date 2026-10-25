@@ -12,6 +12,9 @@ public class MonsterChase : MonoBehaviour
     private NavMeshAgent agent;
     private Transform player;
     private bool isChasing = false;
+    public float chaseLoseTimeout = 3.0f; // Сколько секунд монстр помнит игрока после потери из виду
+    private float loseTimer = 0f;         // Внутренний счетчик времени
+
 
     void Start()
     {
@@ -24,21 +27,40 @@ public class MonsterChase : MonoBehaviour
     }
 
     void Update()
+{
+    if (CanSeePlayer())
     {
-        if (CanSeePlayer())
+        isChasing = true;
+        loseTimer = chaseLoseTimeout; // Сбрасываем таймер на максимум, пока видим игрока
+
+        if (player != null)
         {
-            isChasing = true;
-            if (player != null)
-            {
-                agent.SetDestination(player.position);
-            }
-        }
-        else
-        {
-            isChasing = false;
-            agent.ResetPath();
+            agent.SetDestination(player.position);
         }
     }
+    else
+    {
+        // Если игрок скрылся, но монстр еще находится в режиме погони
+        if (isChasing)
+        {
+            loseTimer -= Time.deltaTime; // Уменьшаем таймер каждую секунду
+
+            if (player != null)
+            {
+                // Монстр продолжает бежать за игроком, пока тикает таймер
+                agent.SetDestination(player.position); 
+            }
+
+            // Когда время вышло — прекращаем погоню
+            if (loseTimer <= 0)
+            {
+                isChasing = false;
+                agent.ResetPath();
+            }
+        }
+    }
+}
+
 
     bool CanSeePlayer()
     {

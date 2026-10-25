@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private float normalSpeed;            // Исходная скорость
     private float normalHeight;           // Исходный рост
     private float currentSpeed;           // Переменная для текущей скорости
+    private bool isCrouching = false;     // флаг приседания
 
     void Start()
     {
@@ -37,6 +38,7 @@ public class PlayerMovement : MonoBehaviour
         float x = 0f;
         float z = 0f;
 
+        // Прыжок
         if (controller.isGrounded)
         {
             if (velocity.y < 0) 
@@ -44,23 +46,26 @@ public class PlayerMovement : MonoBehaviour
                 velocity.y = -2f; 
             }
 
-            if (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame)
+            if (Keyboard.current != null && Keyboard.current.spaceKey.wasPressedThisFrame && !isCrouching)
             {
                 velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             }
         }
 
+        // Приседание
         if (Keyboard.current != null)
         {
             if (Keyboard.current.leftCtrlKey.isPressed)
             {
                 controller.height = crouchHeight;
                 speed = crouchSpeed;
+                isCrouching = true; // Игрок присел
             }
             else
             {
                 controller.height = normalHeight;
                 speed = normalSpeed;
+                isCrouching = false; // Игрок встал
             }
         }
 
