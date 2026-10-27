@@ -33,7 +33,7 @@ public class PlayerInteraction : MonoBehaviour
                     promptTextObject.text = interactable.GetInteractionPrompt();
                 }
 
-                if (Keyboard.current != null && Keyboard.current.fKey.wasPressedThisFrame)
+                if (Keyboard.current != null && Keyboard.current.eKey.wasPressedThisFrame)
                 {
                     interactable.Interact();
                 }
