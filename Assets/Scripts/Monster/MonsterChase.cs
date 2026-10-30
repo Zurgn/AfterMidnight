@@ -31,7 +31,7 @@ public class MonsterChase : MonoBehaviour
     if (CanSeePlayer())
     {
         isChasing = true;
-        loseTimer = chaseLoseTimeout; // Сбрасываем таймер на максимум, пока видим игрока
+        loseTimer = chaseLoseTimeout;
 
         if (player != null)
         {
@@ -40,18 +40,15 @@ public class MonsterChase : MonoBehaviour
     }
     else
     {
-        // Если игрок скрылся, но монстр еще находится в режиме погони
         if (isChasing)
         {
-            loseTimer -= Time.deltaTime; // Уменьшаем таймер каждую секунду
+            loseTimer -= Time.deltaTime;
 
             if (player != null)
             {
-                // Монстр продолжает бежать за игроком, пока тикает таймер
                 agent.SetDestination(player.position); 
             }
 
-            // Когда время вышло — прекращаем погоню
             if (loseTimer <= 0)
             {
                 isChasing = false;

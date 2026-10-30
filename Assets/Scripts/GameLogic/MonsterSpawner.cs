@@ -5,7 +5,7 @@ public class MonsterSpawner : MonoBehaviour
     public ScaryMonster monsterScript;
     
     private float timer;
-    public float spawnInterval = 15f; // Каждые 15 секунд монстр будет прыгать за спину
+    public float spawnInterval = 15f;
 
     void Start()
     {
@@ -19,7 +19,7 @@ public class MonsterSpawner : MonoBehaviour
         if (timer <= 0)
         {
             monsterScript.SpawnBehindPlayer();
-            timer = spawnInterval; // Сбрасываем таймер
+            timer = spawnInterval;
         }
     }
 }
